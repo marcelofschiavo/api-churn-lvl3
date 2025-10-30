@@ -23,7 +23,7 @@ from pydantic import BaseModel # Para definir os "contratos" (schemas) de entrad
 
 # --- 🧠 Explicação Didática: Caminhos (Paths) ---
 # Encontrando o caminho para o nosso modelo salvo
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__)) # Só um 'dirname'
 MODEL_DIR = os.path.join(BASE_DIR, 'models')
 MODEL_PATH = os.path.join(MODEL_DIR, 'best_churn_pipeline.pkl')
 
@@ -161,4 +161,4 @@ if __name__ == "__main__":
     print("Acesse http://127.0.0.1:8000/docs para testar.")
     # 🧠 Explicação: 'reload=True' é ótimo para dev.
     # Se você salvar o script, a API reinicia sozinha.
-    uvicorn.run("03_api:app", host="127.0.0.1", port=7860, reload=True)
+    uvicorn.run("app:app", host="127.0.0.1", port=7860, reload=True)
