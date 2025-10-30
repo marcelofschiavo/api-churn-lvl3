@@ -1,0 +1,10 @@
+artifact_location: file:///home/marcelo-schiavo/projeto_churn_lvl2/mlruns/351679785486807641/models/m-eab16cb6da434d7aa46bae16f2e9ec4e/artifacts
+creation_timestamp: 1761859696343
+experiment_id: '351679785486807641'
+last_updated_timestamp: 1761859698159
+model_id: m-eab16cb6da434d7aa46bae16f2e9ec4e
+model_type: null
+name: model_pipeline
+source_run_id: 41afc9f877f24e3c866e85a52cf5c75c
+status: 2
+status_message: null

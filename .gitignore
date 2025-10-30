@@ -1,0 +1,13 @@
+# No seu arquivo .gitignore
+
+# Ignorar o ambiente virtual
+.venv/
+
+# Ignorar os dados (nunca suba dados para o GitHub!)
+data/*.csv
+
+# Ignorar os modelos (são muito grandes)
+models/*.pkl
+
+# Arquivos de cache do Python
+__pycache__/

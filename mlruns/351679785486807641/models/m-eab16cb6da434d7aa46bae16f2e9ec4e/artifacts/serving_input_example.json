@@ -1,0 +1,60 @@
+{
+  "dataframe_split": {
+    "columns": [
+      "salario_mensal",
+      "tempo_empresa_dias",
+      "dias_desde_ultimo_login",
+      "media_tempo_logado_min",
+      "total_chamados_suporte",
+      "departamento_TI",
+      "departamento_Vendas"
+    ],
+    "data": [
+      [
+        6000.0,
+        770,
+        154,
+        57.725,
+        6.0,
+        1,
+        0
+      ],
+      [
+        5250.0,
+        1118,
+        134,
+        91.6,
+        11.0,
+        1,
+        0
+      ],
+      [
+        6000.0,
+        710,
+        7,
+        57.0,
+        4.0,
+        0,
+        0
+      ],
+      [
+        4500.0,
+        1274,
+        300,
+        67.86486486486487,
+        14.0,
+        1,
+        0
+      ],
+      [
+        8000.0,
+        746,
+        18,
+        55.130434782608695,
+        1.0,
+        0,
+        1
+      ]
+    ]
+  }
+}
