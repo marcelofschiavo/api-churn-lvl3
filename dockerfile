@@ -32,11 +32,8 @@ COPY ./models/best_churn_pipeline.pkl ./models/
 # Copia o '03_api.py' para '/app/src/'.
 COPY ./src/03_api.py ./src/
 
-# --- 5. EXPOR A PORTA (Abrindo a Janela da Loja) ---
-# 🧠 Explicação: A API (uvicorn) vai rodar *dentro* da caixa na
-# porta 8000. Precisamos "abrir um buraco" na parede da caixa
-# para o mundo exterior poder falar com ela.
-EXPOSE 8000
+# porta 7860 (exigência do HFS). Precisamos "abrir um buraco" na parede da caixa
+EXPOSE 7860
 
 # --- 6. O COMANDO DE PARTIDA (A Chave de Ignição) ---
 # 🧠 Explicação: O que a "caixa" deve fazer assim que for ligada?
