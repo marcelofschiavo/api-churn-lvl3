@@ -23,7 +23,10 @@ from pydantic import BaseModel # Para definir os "contratos" (schemas) de entrad
 
 # --- 🧠 Explicação Didática: Caminhos (Paths) ---
 # Encontrando o caminho para o nosso modelo salvo
-BASE_DIR = os.path.dirname(os.path.abspath(__file__)) # Só um 'dirname'
+# O 'app.py' está em /home/user/app
+# O 'MODEL_PATH' está em /home/user/app/models/best_churn_pipeline.pkl
+# Vamos usar um caminho relativo que *sempre* funciona:
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_DIR = os.path.join(BASE_DIR, 'models')
 MODEL_PATH = os.path.join(MODEL_DIR, 'best_churn_pipeline.pkl')
 
