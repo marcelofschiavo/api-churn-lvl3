@@ -1,13 +1,14 @@
-# No seu arquivo .gitignore
-
 # Ignorar o ambiente virtual
 .venv/
 
-# Ignorar os dados (nunca suba dados para o GitHub!)
-data/*.csv
+# Ignorar os dados
+data/
 
-# Ignorar os modelos (são muito grandes)
-models/*.pkl
+# Ignorar os modelos (o .pkl é rastreado pelo LFS, mas tudo bem)
+models/
 
 # Arquivos de cache do Python
 __pycache__/
+
+# IGNORAR OS LOGS DO MLFLOW (A CORREÇÃO)
+mlruns/
