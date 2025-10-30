@@ -9,7 +9,7 @@ app_port: 7860
 Este repositório contém o código de ponta-a-ponta para um projeto de People Analytics, que transforma dados brutos de RH em uma API de deploy em tempo real.
 
 O modelo está (ou estará em breve) "vivo" nesta URL:
-➡️ [https://huggingface.co/spaces/marcelofschiavo/api-churn-lvl3](https://huggingface.co/spaces/marcelofschiavo/api-churn-lvl3)
+➡️ [https://huggingface.co/spaces/marcelofschiavo/api-churn-v1](https://huggingface.co/spaces/marcelofschiavo/api-churn-v1)
 
 (A documentação da API estará em `/docs` no final da URL)
 
