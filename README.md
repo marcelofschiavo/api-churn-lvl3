@@ -1,7 +1,7 @@
 ---
 title: API de Previsão de Churn (Lvl 3)
 sdk: docker
-app_port: 8000 
+app_port: 7860
 ---
 
 # 🚀 Projeto de MLOps (Nível 3): API de Previsão de Churn

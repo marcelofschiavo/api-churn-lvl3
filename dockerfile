@@ -43,4 +43,4 @@ EXPOSE 8000
 # "Ligue o servidor uvicorn, escute em todas as IPs (0.0.0.0),
 # na porta 8000, e sirva a API que está no arquivo 'src/03_api.py'
 # e se chama 'app'".
-CMD ["uvicorn", "src.03_api:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "src.03_api:app", "--host", "0.0.0.0", "--port", "7860"]

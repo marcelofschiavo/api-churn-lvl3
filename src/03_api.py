@@ -161,4 +161,4 @@ if __name__ == "__main__":
     print("Acesse http://127.0.0.1:8000/docs para testar.")
     # 🧠 Explicação: 'reload=True' é ótimo para dev.
     # Se você salvar o script, a API reinicia sozinha.
-    uvicorn.run("03_api:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("03_api:app", host="127.0.0.1", port=7860, reload=True)
