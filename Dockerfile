@@ -5,7 +5,7 @@
 # ---------------------------------------------------------------
 
 # 1. A Base: Usando a versão de Python RECOMENDADA pelo HFS
-FROM python:3.9-slim
+FROM python:3.13-slim
 
 # 2. Criando o usuário "user" (ID 1000) como a doc pede
 RUN useradd -m -u 1000 user
