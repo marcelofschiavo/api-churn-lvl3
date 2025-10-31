@@ -1,56 +1,51 @@
 """
 ===================================================================
-PROJETO 1 (NÍVEL 3) - SCRIPT 3: 03_api.py
-
-OBJETIVO: (Deploy / MLOps)
-1.  (Load) Carregar a pipeline '.pkl' salva pelo Script 02.
-2.  (Serve) Criar uma API FastAPI para "servir" o modelo.
-3.  (Endpoint) Criar um endpoint '/predict' que recebe dados
-    de um funcionário (em JSON) e retorna o risco de churn.
-
-COMO RODAR (no terminal, com o .venv ativado):
-$ python src/03_api.py
-(E depois acesse http://127.0.0.1:8000/docs no seu navegador)
+PROJETO 1 (NÍVEL 4) - SCRIPT 3: app.py (API Versão BigQuery)
 ===================================================================
 """
-
-import uvicorn  # O servidor que "liga" a API
-import joblib   # Para carregar nosso modelo .pkl
+import uvicorn
+import joblib
 import pandas as pd
 import os
+import json # <--- NOVO: Para ler o JSON injetado
 from fastapi import FastAPI
-from pydantic import BaseModel # Para definir os "contratos" (schemas) de entrada
+from pydantic import BaseModel 
+from google.cloud import bigquery # <--- NOVO: Para o BigQuery
 
-# --- 🧠 Explicação Didática: Caminhos (Paths) ---
-# Encontrando o caminho para o nosso modelo salvo
-# O 'app.py' está em /home/user/app
-# O 'MODEL_PATH' está em /home/user/app/models/best_churn_pipeline.pkl
-# Vamos usar um caminho relativo que *sempre* funciona:
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MODEL_DIR = os.path.join(BASE_DIR, 'models')
-MODEL_PATH = os.path.join(MODEL_DIR, 'best_churn_pipeline.pkl')
+# --- 🧠 Configuração Nível 4 (O BQ e Caminhos) ---
+PROJECT_ID_CORRETO = "churn-api-476801"
+BQ_DATASET = "rh_data" 
 
+# 🧠 Explicação: Agora, o app.py espera encontrar a chave injetada na raiz
+KEY_PATH = "bigquery_key.json" 
+MODEL_PATH = "models/best_churn_pipeline.pkl" # Corrigido para caminho relativo
 
 # --- 1. Criando a Instância da API ---
-# 'app' é a instância principal da nossa API
-print("--- Iniciando a API do Modelo de Churn (Lvl 3) ---")
 app = FastAPI(
-    title="API de Predição de Churn (Lvl 3)",
-    description="Serve um modelo RF+SMOTE para prever o risco de saída de funcionários."
+    # Mude o título para refletir a arquitetura Nível 4 (BigQuery)
+    title="API de Predição de Churn (Arquitetura Nível 4 | MLOps BigQuery)", 
+    description="Modelo treinado no Google BigQuery, servido via FastAPI."
 )
 
 
-# --- 2. Carregando o Modelo (O "Produto" do Lvl 2) ---
-# 🧠 Explicação: Carregamos o modelo UMA VEZ quando a API liga.
-# Ele fica "vivo" na memória, pronto para ser usado.
-print(f"Carregando modelo de: {MODEL_PATH}")
+# --- 2. Carregando o Modelo e Autenticando o BQ ---
+# 🧠 Explicação: O 'os.environ' deve apontar para o arquivo que o Docker injetou.
+print("--- Carregando Modelo e Autenticando BQ ---")
+
 try:
+    # 1. Autenticação BQ (Obrigatório antes do joblib.load)
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = KEY_PATH
+    
+    # 2. Carregar o Modelo
     model = joblib.load(MODEL_PATH)
-    print("Modelo carregado com sucesso na memória.")
+    print("Modelo e BQ autenticados com sucesso.")
+
 except FileNotFoundError:
-    print(f"ERRO: Modelo '{MODEL_PATH}' não encontrado!")
-    print("Por favor, rode 'python src/02_train.py' primeiro.")
+    print(f"ERRO CRÍTICO: Não encontrou o modelo ou a chave em {MODEL_PATH} ou {KEY_PATH}")
     model = None
+except Exception as e:
+     print(f"ERRO DE INICIALIZAÇÃO: {e}")
+     model = None
 
 
 # --- 3. Definindo o "Contrato" de Entrada (Schema Pydantic) ---
